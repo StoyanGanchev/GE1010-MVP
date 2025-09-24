@@ -1,0 +1,56 @@
+{
+  "id": "nlp_basics",
+  "title": "NLP for Bilingual Communities",
+  "track": "nlp",
+  "description": "Use natural language processing to understand Arabic and English youth feedback.",
+  "checkpoints": {
+    "lessons": [
+      {
+        "id": "nlp_overview",
+        "title": "Text Data from UAE Youth Councils",
+        "summary": "Collect sentiment samples from Ministry of Youth surveys.",
+        "durationMins": 17
+      },
+      {
+        "id": "intent_models",
+        "title": "Intent Detection for School Services",
+        "summary": "Design intents that categorize student requests in both Arabic and English.",
+        "durationMins": 19
+      },
+      {
+        "id": "evaluation",
+        "title": "Testing Multilingual Models",
+        "summary": "Measure accuracy using dialect variations across emirates.",
+        "durationMins": 21
+      }
+    ],
+    "practice": {
+      "brief": "Plan a chatbot that supports Expo Schools Programme mentors.",
+      "missingPieces": [
+        "Example utterances covering Arabic and English",
+        "Polices for storing chat transcripts",
+        "KPIs for learner satisfaction"
+      ],
+      "hints": [
+        "Reference the UAE AI Ethics Guidelines for privacy.",
+        "Include colloquial phrases from Abu Dhabi and Sharjah learners."
+      ],
+      "rubricSummary": "Prioritises inclusivity, data care, and measurable outcomes."
+    },
+    "final": {
+      "brief": "Draft an implementation canvas for a bilingual help-desk assistant.",
+      "requirements": [
+        "Dataset and annotation plan",
+        "Responsible AI checklist",
+        "Rollout plan for pilot schools"
+      ],
+      "rubricSummary": "Scored on cultural relevance, safety, and programme impact."
+    }
+  },
+  "expectedOutcomes": [
+    "Explain tokenisation challenges for Arabic text",
+    "Design intents and entities for education services",
+    "Evaluate model outputs for fairness across dialects"
+  ],
+  "difficulty": 2
+}

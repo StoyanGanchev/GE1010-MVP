@@ -1,0 +1,56 @@
+{
+  "id": "sustainability_intro",
+  "title": "Forecasting for Sustainable Schools",
+  "track": "sustainability",
+  "description": "Model energy and water usage to support UAE Net Zero 2050 campaigns.",
+  "checkpoints": {
+    "lessons": [
+      {
+        "id": "resource_data",
+        "title": "Reading School Utility Dashboards",
+        "summary": "Analyse DEWA consumption reports for classrooms and labs.",
+        "durationMins": 18
+      },
+      {
+        "id": "forecasting",
+        "title": "Building Simple Forecast Models",
+        "summary": "Use historical data to predict resource demand during innovation fairs.",
+        "durationMins": 20
+      },
+      {
+        "id": "action_plans",
+        "title": "Turning Insights into Impact",
+        "summary": "Plan student-led interventions aligned with UAE Green Education partnership.",
+        "durationMins": 19
+      }
+    ],
+    "practice": {
+      "brief": "Develop a briefing for school operations teams preparing for Climate Future Week.",
+      "missingPieces": [
+        "Chart of predicted energy spikes",
+        "Ideas for student ambassador challenges",
+        "Checklist for measuring impact"
+      ],
+      "hints": [
+        "Compare weekdays vs. weekend data to justify recommendations.",
+        "Highlight how forecasts support parental engagement."
+      ],
+      "rubricSummary": "Focus on clarity, responsible data use, and actionability."
+    },
+    "final": {
+      "brief": "Design a sustainability sprint that empowers students to track savings.",
+      "requirements": [
+        "Goal aligned with Ministry of Education priorities",
+        "Data collection and sharing plan",
+        "Reflection prompts for learners"
+      ],
+      "rubricSummary": "Scored on measurable impact, safety, and collaboration."
+    }
+  },
+  "expectedOutcomes": [
+    "Interpret energy and water dashboards",
+    "Build simple forecasts for school events",
+    "Plan learner-led sustainability actions"
+  ],
+  "difficulty": 2
+}
