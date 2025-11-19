@@ -1,13 +1,305 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduAI Future Lab — MVP</title>
-  </head>
-  <body class="bg-slate-50 text-slate-900">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDU-AI | Teaching the AI Generation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <section id="landing" class="landing">
+      <div class="landing__glow"></div>
+      <div class="landing__content">
+        <p class="eyebrow">Future-ready classrooms</p>
+        <h1><span>EDU</span>-AI</h1>
+        <p class="tagline">
+          A unified workspace that helps teachers craft AI-infused learning journeys and gives students a
+          guided way to explore lessons, quizzes, and grades.
+        </p>
+        <div class="landing__actions">
+          <button class="primary" data-launch="teacher">Teacher Experience</button>
+          <button class="secondary" data-launch="student">Student Experience</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="teacher-shell" class="app-shell hidden" data-role="teacher">
+      <aside class="sidebar">
+        <div class="sidebar__branding">
+          <div class="logo-dot"></div>
+          <div>
+            <h2>EDU-AI</h2>
+            <p>Teacher control room</p>
+          </div>
+        </div>
+        <nav>
+          <button class="nav-btn active" data-target="teacher-dashboard">Dashboard</button>
+          <button class="nav-btn" data-target="teacher-create-lesson">Create Lesson</button>
+          <button class="nav-btn" data-target="teacher-lessons">Lessons</button>
+          <button class="nav-btn" data-target="teacher-generate-quiz">Generate Quiz</button>
+          <button class="nav-btn" data-target="teacher-quizzes">Quizzes</button>
+          <button class="nav-btn" data-target="teacher-analytics">Classroom Analytics</button>
+          <button class="nav-btn" data-target="teacher-tasks">Tasks</button>
+        </nav>
+        <div class="sidebar__footer">
+          <button class="ghost" data-action="switch-student">Switch to student</button>
+          <button class="ghost" data-action="return-home">Back to landing</button>
+        </div>
+      </aside>
+      <main class="workspace">
+        <header class="workspace__header">
+          <div>
+            <h1>Teacher Experience</h1>
+            <p>Plan, generate and monitor AI-powered lessons.</p>
+          </div>
+        </header>
+
+        <section id="teacher-dashboard" class="panel active">
+          <div class="panel__header">
+            <div>
+              <h2>Dashboard Overview</h2>
+              <p>Quick signal on lessons, students, and quiz mastery.</p>
+            </div>
+          </div>
+          <div class="grid metrics" id="dashboard-metrics"></div>
+          <div class="panel-block">
+            <div class="panel__header">
+              <h3>Recent Lessons</h3>
+              <p>Latest AI-assisted plans shared with students</p>
+            </div>
+            <div class="recent-lessons" id="recent-lessons"></div>
+          </div>
+        </section>
+
+        <section id="teacher-create-lesson" class="panel">
+          <div class="panel__header">
+            <div>
+              <h2>Create Lesson</h2>
+              <p>Feed the AI model with context to generate a differentiated lesson plan.</p>
+            </div>
+            <span class="badge subtle">Syllabus optional</span>
+          </div>
+          <form id="lesson-form" class="split-form">
+            <label>
+              Lesson topic
+              <input type="text" name="topic" required placeholder="e.g., Ethical AI in storytelling">
+            </label>
+            <label>
+              Lesson context / notes
+              <textarea name="context" rows="4" placeholder="Key skills, classroom constraints, differentiation notes"></textarea>
+            </label>
+            <label>
+              Upload syllabus (optional)
+              <input type="file" name="syllabus" accept=".pdf,.doc,.docx,.ppt,.pptx">
+            </label>
+            <div class="grid two">
+              <label>
+                Grade level
+                <select name="grade" required></select>
+              </label>
+              <label>
+                AI curriculum pillar
+                <select name="pillar" required></select>
+              </label>
+            </div>
+            <label>
+              Language
+              <select name="language" required>
+                <option value="English" selected>English</option>
+                <option value="Arabic">Arabic</option>
+              </select>
+            </label>
+            <button type="submit" class="primary">Generate Lesson</button>
+          </form>
+          <div id="lesson-output" class="generated-card hidden"></div>
+        </section>
+
+        <section id="teacher-lessons" class="panel">
+          <div class="panel__header">
+            <h2>Lessons Library</h2>
+            <p>Browse, review and reuse previous AI-generated lessons.</p>
+          </div>
+          <div class="grid two">
+            <div class="list-card">
+              <h3>All lessons</h3>
+              <ul id="lessons-list" class="stacked-list"></ul>
+            </div>
+            <div class="details-card" id="lesson-details">
+              <p>Select a lesson to preview objectives, outline, and notes.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="teacher-generate-quiz" class="panel">
+          <h2>Generate Quiz</h2>
+          <p>Create a formative check for understanding aligned with the lesson.</p>
+          <form id="quiz-form" class="split-form">
+            <label>
+              Quiz focus
+              <input type="text" name="topic" required placeholder="e.g., Responsible data sharing">
+            </label>
+            <label>
+              Context for the questions
+              <textarea name="context" rows="4" placeholder="What skills or misconceptions should the quiz address?"></textarea>
+            </label>
+            <div class="grid two">
+              <label>
+                Grade level
+                <select name="grade" required></select>
+              </label>
+              <label>
+                AI curriculum pillar
+                <select name="pillar" required></select>
+              </label>
+            </div>
+            <label>
+              Language
+              <select name="language" required>
+                <option value="English" selected>English</option>
+                <option value="Arabic">Arabic</option>
+              </select>
+            </label>
+            <button type="submit" class="primary">Generate Quiz</button>
+          </form>
+          <div id="quiz-output" class="generated-card hidden"></div>
+        </section>
+
+        <section id="teacher-quizzes" class="panel">
+          <div class="panel__header">
+            <h2>Quiz Bank</h2>
+            <p>All AI-generated quizzes ready for classroom use.</p>
+          </div>
+          <div id="quiz-list" class="grid cards"></div>
+        </section>
+
+        <section id="teacher-analytics" class="panel">
+          <h2>Classroom Analytics</h2>
+          <div class="grid metrics" id="analytics-metrics"></div>
+          <div class="grid analytics-layout">
+            <div class="analytics-card">
+              <div class="card-header">
+                <h3>Top performers</h3>
+                <span class="badge soft success">+5% vs last month</span>
+              </div>
+              <ul id="top-students" class="leader-list"></ul>
+            </div>
+            <div class="analytics-card">
+              <div class="card-header">
+                <h3>Needs attention</h3>
+                <span class="badge soft alert">6 students under 65%</span>
+              </div>
+              <ul id="attention-list" class="leader-list warning"></ul>
+            </div>
+            <div class="analytics-card">
+              <h3>AI curriculum progress</h3>
+              <ul id="pillar-progress" class="progress-list"></ul>
+            </div>
+            <div class="analytics-card wide">
+              <div class="card-header">
+                <div>
+                  <h3>Recommended actions</h3>
+                  <p>Quick wins suggested by EDU-AI</p>
+                </div>
+                <span class="badge soft">Updated daily</span>
+              </div>
+              <ul id="recommendations-list" class="recommendations"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="teacher-tasks" class="panel">
+          <div class="under-construction simple">
+            <div class="placeholder-icon">⚙️</div>
+            <h2>AI Tasks</h2>
+            <p>This workspace is under construction. Preview coming soon.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="student-shell" class="app-shell hidden" data-role="student">
+      <aside class="sidebar">
+        <div class="sidebar__branding">
+          <div class="logo-dot"></div>
+          <div>
+            <h2>EDU-AI</h2>
+            <p>Student journey</p>
+          </div>
+        </div>
+        <nav>
+          <button class="nav-btn active" data-target="student-lessons">Lessons</button>
+          <button class="nav-btn" data-target="student-quizzes">Quizzes</button>
+          <button class="nav-btn" data-target="student-grades">Grades</button>
+          <button class="nav-btn" data-target="student-tasks">Tasks</button>
+        </nav>
+        <div class="sidebar__footer">
+          <button class="ghost" data-action="switch-teacher">Switch to teacher</button>
+          <button class="ghost" data-action="return-home">Back to landing</button>
+        </div>
+      </aside>
+      <main class="workspace">
+        <header class="workspace__header">
+          <div>
+            <h1>Student Experience</h1>
+            <p>Explore lessons, complete quizzes, and track your progress.</p>
+          </div>
+          <div class="badge subtle">Pilot account</div>
+        </header>
+
+        <section id="student-lessons" class="panel active">
+          <h2>Lesson Library</h2>
+          <p>Jump into teacher-published lessons and review AI guidance.</p>
+          <div class="grid two">
+            <div class="list-card">
+              <ul id="student-lessons-list" class="stacked-list"></ul>
+            </div>
+            <div id="student-lesson-details" class="details-card">
+              <p>Select a lesson to review the outline and objectives.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="student-quizzes" class="panel">
+          <h2>Available Quizzes</h2>
+          <p>Each quiz adapts to your current AI curriculum level. Complete one to receive instant feedback.</p>
+          <div id="student-quiz-list" class="grid cards"></div>
+        </section>
+
+        <section id="student-grades" class="panel">
+          <h2>Grades</h2>
+          <table class="grades-table">
+            <thead>
+              <tr>
+                <th>Quiz</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="grades-body"></tbody>
+          </table>
+        </section>
+
+        <section id="student-tasks" class="panel">
+          <div class="under-construction simple">
+            <div class="placeholder-icon">🛠️</div>
+            <h2>AI Tasks</h2>
+            <p>This page is under construction. Stay tuned for new challenges.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="quiz-modal" class="modal hidden">
+    <div class="modal__content">
+      <button class="close" data-modal-close>&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
 </html>
